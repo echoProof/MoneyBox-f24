@@ -1,66 +1,42 @@
-## Foundry
+# MoneyBox Smart Contract
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This repository contains the MoneyBox smart contract, a Solidity implementation for a decentralized funding platform.
 
-Foundry consists of:
+## Overview
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+The MoneyBox contract allows users to contribute funds towards a specific goal amount. It uses Chainlink price feeds to ensure a minimum USD value for contributions and includes features like fund withdrawal once the goal is achieved.
 
-## Documentation
+## Features
 
-https://book.getfoundry.sh/
+- Minimum contribution of $5 USD
+- Goal-based funding
+- Owner-only withdrawal
+- Chainlink price feed integration
+- Fallback and receive functions for direct transfers
 
-## Usage
+## Requirements
 
-### Build
+- Solidity ^0.8.18
+- Foundry (for development and testing)
+- Chainlink Contracts
 
-```shell
-$ forge build
-```
+## Key Functions
 
-### Test
+- `fund()`: Allows users to contribute ETH
+- `withdraw()`: Enables the owner to withdraw funds once the goal is achieved
+- `getAddressToAmountFunded()`: Retrieves the amount funded by a specific address
+- `getFunder()`: Gets the address of a funder by index
+- `getOwner()`: Returns the contract owner's address
+- `getGoalAmount()`: Retrieves the funding goal amount
 
-```shell
-$ forge test
-```
+## Setup and Deployment
 
-### Format
+1. Clone this repository
+2. Install dependencies: `forge install`
+3. Compile the contract: `forge build`
+4. Run tests: `forge test`
+5. Deploy the contract, providing the Chainlink price feed address and goal amount as constructor parameters
 
-```shell
-$ forge fmt
-```
+## License
 
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+This project is licensed under the MIT License.
